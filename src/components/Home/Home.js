@@ -41,6 +41,7 @@ setorders(res.data)
       <th>amount</th>
       <th>Class</th>
       <th>Address</th>
+      <th>State</th>
       <th>PinCode</th>
      
       <th>Date</th>
@@ -58,7 +59,8 @@ setorders(res.data)
       <td>{item.phone}</td>
       <td>{item.totalAmount}</td>
       <td>{item.className}</td>
-      <td>{item.userAddress} , {item.userTown},{item.state}</td>
+      <td>{item.userAddress} , {item.userTown}</td>
+      <td> {item.state} </td>
       <td> {item.pinCode} </td>
       <td>
      { moment(item.updatedAt).format('MMMM Do YYYY')}
