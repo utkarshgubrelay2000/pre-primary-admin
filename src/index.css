@@ -18,7 +18,9 @@ body {
   height: 120px;
   overflow: hidden;
 }
-
+td{
+  text-align: center;
+}
 .owl-theme {
   align-items: center;
 }

@@ -12,10 +12,10 @@ export default function Login() {
   const [loginError, setloginError] = useState(false);
 
   useEffect(() => {
-    var currentUser = JSON.parse(localStorage.getItem("eklavyaStudent"));
+    var currentUser = JSON.parse(localStorage.getItem("eklavyaadmin"));
 
     if (currentUser) {
-      history.push("/");
+      history.push("/dashboard");
     }
 
     return () => {
@@ -25,6 +25,7 @@ export default function Login() {
 
   const submitLoginCredentials = async (e) => {
     setloginError(false);
+    setshowLoading(true);
     e.preventDefault();
 
     var loginCredentials = {
@@ -34,6 +35,7 @@ export default function Login() {
 
     try {
       const resData = await loginStudent(loginCredentials);
+      setshowLoading(false);
 
       // console.log("Login data", resData);
 
@@ -41,20 +43,20 @@ export default function Login() {
 
       var eklavyaStudent = {
         token: resData.data.token,
-        name: resData.data.name,
-        studentId: resData.data.studentId,
       };
 
-      localStorage.setItem("eklavyaStudent", JSON.stringify(eklavyaStudent));
+      localStorage.setItem("eklavyaadmin", JSON.stringify(eklavyaStudent));
     } catch (e) {
       // console.log("Login error", e);
       setloginError(true);
+      setshowLoading(false);
+
     }
 
-    var currentUser = JSON.parse(localStorage.getItem("eklavyaStudent"));
+    var currentUser = JSON.parse(localStorage.getItem("eklavyaadmin"));
 
     if (currentUser) {
-      history.push("/");
+      window.location.href='/dashboard'
     }
   };
 
@@ -123,8 +125,10 @@ export default function Login() {
                     <button
                       className="btn btn-primary btn-hover-secondary btn-width-100"
                       type="submit"
-                    >
-                      Log In
+                    >{
+                      showLoading?"Loading...":
+                     " Log In"
+                    }
                     </button>
                   </div>
                 </form>

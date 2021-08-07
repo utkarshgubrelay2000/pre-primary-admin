@@ -1,33 +1,26 @@
-
 import Home from "./components/Home/Home";
-
-import Contact from "./components/Contact/Contact";
-
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-import Checkout from "./components/Checkout/Checkout";
-
-import Register from "./components/Login/Register/Register";
 import Login from "./components/Login/Register/Login";
-
-
 import ScrollToTop from "react-router-scroll-top";
 
-import PaymentSuccessfull from './components/PaymentSuccessfull/PaymentSuccessfull';
-
 function App() {
+  const [isUser, setIsUser] = useState(null);
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("eklavyaadmin"));
+    //  console.log(currentUser)
+    setIsUser(currentUser);
+  }, [0]);
   return (
     <Router>
       <ScrollToTop>
         <div className="App">
-          {/* <Navbar /> */}
-          <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/pre-primaryCheckout" component={Checkout} />
-          <Route exact path="/paymentsuccessfull" component={PaymentSuccessfull} />
-          <Route exact path="/contact" component={Contact} />
-          
+          {isUser?
+          <Route exact path="/dashboard" component={Home} />
+        :
+          <Route exact path="/" component={Login} />
+        }
+
           {/* <Switch>
             <Route exact path="/Classes" component={Classes} />
 
@@ -74,8 +67,6 @@ function App() {
           </Switch>
 
          */}
-
-
         </div>
       </ScrollToTop>
     </Router>

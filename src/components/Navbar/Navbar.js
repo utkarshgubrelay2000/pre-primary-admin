@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
     const [isUser,setIsUser]=useState(null)
     useEffect(()=>{
-        const currentUser = JSON.parse(localStorage.getItem('eklavyaStudent'))
+        const currentUser = JSON.parse(localStorage.getItem('eklavyaadmin'))
       //  console.log(currentUser)
      setIsUser(currentUser)
       },[0])
@@ -15,8 +15,8 @@ export default function Navbar() {
     }
  const [isMenuOpen,setIsMenuOpen]=useState(false)
 const logoutHandler=()=>{
-    localStorage.removeItem('eklavyaStudent');
-    window.location.reload()
+    localStorage.removeItem('eklavyaadmin');
+    window.location.href='/'
 }
   return (
     <div>
@@ -100,9 +100,15 @@ const logoutHandler=()=>{
                                     <li className="position-static">
                                         <a href="http://ekluvya.guru/contact-us.html"><span className="menu-text">Contact</span></a>
                                     </li>
+                                    {!isUser?
+             null
+    :    <li>
+                   <a onClick={logoutHandler}><span className="menu-text">Logout</span></a>
+               </li>  }
                                 </ul>
                             </nav>
                         </div>
+                        
                         <div className="col-xl-3 col-auto">
                             <div className="header-right">
                                 <div className="inner">
