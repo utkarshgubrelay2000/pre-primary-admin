@@ -26,7 +26,7 @@ setorders(res.data)
   }
   return (
     <Layout>
-      <div className='container text-center'>
+      <div className='mr-4 ml-4 text-center'>
         
         <h2 className="mt-3">Pre Primary Bookings</h2>
         <div className='row'>
@@ -36,7 +36,7 @@ setorders(res.data)
               <input
                 type="search"
                 className="form-control form-control-sm"
-                placeholder=""
+                placeholder="name,email,status"
                 aria-controls="datatable-buttons"
                 onChange={(e) => setsearchTerm(e.target.value)}
               />
@@ -45,7 +45,7 @@ setorders(res.data)
 
    </div>
         
-      <div id="page" className="section mt-5 " style={{minHeight:'300px'}}>
+      <div id="page" className="section mt-5  " style={{minHeight:'300px'}}>
       <Table striped bordered hover responsive >
   <thead>
     <tr>
@@ -84,6 +84,12 @@ setorders(res.data)
                     .includes(searchTerm.toLocaleLowerCase()) 
                 )
                   return item;
+                  else  if (
+                    item.status
+                      .toLocaleLowerCase()
+                      .includes(searchTerm.toLocaleLowerCase()) 
+                  )
+                    return item;
             }).map((item,index)=>{
       return(
     <tr>
