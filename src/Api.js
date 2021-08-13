@@ -15,3 +15,8 @@ export const allPreOrders = async () => {
   const res = await axios.get(`${API_URL}/allPreOrders`,{headers: { Authorization: `${currentUser.token}` },});
   return res;
 };
+export const setOrderStatus = async (id,data) => {
+  console.log(currentUser)
+  const res = await axios.put(`${API_URL}/set-order-status/${id}`,data,{headers: { Authorization: `${currentUser.token}` },});
+  return res;
+};

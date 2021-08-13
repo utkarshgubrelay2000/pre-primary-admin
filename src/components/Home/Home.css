@@ -18,7 +18,9 @@
     flex-direction:  row;
     justify-content: space-between;
 }
-
+td{
+    padding: 4px !important;
+}
 .date-div h6{
     font-weight: normal;
     margin-top: 20px;
